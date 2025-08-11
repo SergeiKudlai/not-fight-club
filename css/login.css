@@ -3,6 +3,10 @@
   background: url("../assetes/images/login-bg.png")no-repeat center/contain;
 }
 
+.login--active {
+  display: none;
+}
+
 .login__container {
   display: flex;
   height: 100%;

@@ -1,0 +1,49 @@
+.start-page {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start-page__container {
+  flex: 1 1 100%;
+  height: calc(100vh - 20rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-page__btn {
+  background-image: url("../assetes/icon/icon-fight.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 50%;
+  width: 50%;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.start-page__btn:hover {
+  animation-name: btn-hover;
+}
+
+@keyframes btn-hover {
+  0% {
+    transform: rotate(180deg);
+  }
+
+  25% {
+    transform: rotate(-180deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(-180deg);
+  }
+}
+

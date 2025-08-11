@@ -1,4 +1,7 @@
-@import './css/variables.css';
-@import './css/reset.css';
-@import './css/global.css';
-@import './css/login.css';
+@import "./css/variables.css";
+@import "./css/reset.css";
+@import "./css/global.css";
+@import "./css/header.css";
+@import "./css/login.css";
+@import "./css/start_page.css";
+@import "./css/footer.css";

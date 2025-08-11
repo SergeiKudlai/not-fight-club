@@ -1,5 +1,4 @@
-export const createPageLogin = () => {
-  let control = false;
+export const createPageLogin = (control) => {
   const PAGE_LOGIN_WRRAPER = document.querySelector('.login');
 
   const HTML_LOGIN = `
@@ -25,14 +24,10 @@ export const createPageLogin = () => {
   const BTN_SUBMIT = document.querySelector('.login__btn');
 
 
-  const controlValidForm = (wrapperLogin) => {
-    const FORM_WRAPPER = wrapperLogin.querySelector('.login__inner');
-
-    FORM_WRAPPER.addEventListener('submit', (e) => {
-      e.preventDefault();
-      localStorage.setItem('name-person', FORM_INPUT.value);
-      control = true;
-    })
+  const controlValidForm = () => {
+    const FORM_WRAPPER = document.querySelector('.login__inner');
+    FORM_WRAPPER.addEventListener('submit', (event) => event.preventDefault());
+    localStorage.setItem('name-person', FORM_INPUT.value);
   }
 
   FORM_INPUT.addEventListener('input', function () {
@@ -52,10 +47,6 @@ export const createPageLogin = () => {
   })
 
   PAGE_LOGIN_WRRAPER.addEventListener('click', function ({ target }) {
-    if (target.classList.contains('login__btn')) {
-      controlValidForm(this);
-    }
-
     if (target.classList.contains('login__enter-btn')) {
       FORM_INPUT.value = '';
       target.classList.remove('login__enter-btn--active');
@@ -63,5 +54,8 @@ export const createPageLogin = () => {
     }
   })
 
-  return control;
+  if (control) {
+    controlValidForm();
+    PAGE_LOGIN_WRRAPER.classList.add('login--active');
+  }
 } 

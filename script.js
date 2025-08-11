@@ -1,5 +1,12 @@
 import { createPageLogin } from './js/render-page_login.js';
+import { createPageStart } from './js/render-page_start.js';
 
-const controlCreatePageLogin = createPageLogin();
+createPageLogin();
 
-console.log(controlCreatePageLogin);
+
+const BTN_SUBMIT_LOGIN_PAGE = document.querySelector('.login__btn');
+
+BTN_SUBMIT_LOGIN_PAGE.addEventListener('click', () => {
+  createPageLogin(true);
+  createPageStart();
+})

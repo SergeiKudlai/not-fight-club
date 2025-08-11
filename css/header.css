@@ -1,0 +1,38 @@
+.header {
+  background-color: var(--color_gold-1);
+}
+
+.header--active {
+  display: none;
+}
+
+.header-list {
+  display: flex;
+  align-items: center;
+  column-gap: 2rem;
+}
+
+.header-list__btn {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 4rem;
+  height: 4rem;
+  transition: transform 0.5s linear;
+}
+
+.header-list__btn:hover {
+  transform: scale(0.8);
+}
+
+.header-list__btn-home {
+  background-image: url("../assetes/icon/icon-home.png");
+}
+
+.header-list__btn-player {
+  background-image: url("../assetes/icon/icon-avatar.png");
+}
+
+.header-list__btn-setting {
+  background-image: url("../assetes/icon/icon-setting.png");
+}
