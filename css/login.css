@@ -56,7 +56,3 @@
 .login__enter-btn--active {
   display: block;
 }
-
-.login__btn:disabled {
-  background-color: red;
-}

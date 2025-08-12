@@ -11,7 +11,7 @@ export const createPageStart = () => {
 
   const html = `
     <div class="start-page__container container">
-      <button class="start-page__btn" type="button"></button>
+      <button class="start-page__btn" type="button" disabled></button>
     </div>
   `;
 

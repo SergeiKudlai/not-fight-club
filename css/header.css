@@ -1,5 +1,6 @@
 .header {
   background-color: var(--color_gold-1);
+  padding: 2.764rem 0;
 }
 
 .header--active {

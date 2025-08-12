@@ -56,6 +56,7 @@ export const createPageLogin = (control) => {
 
   if (control) {
     controlValidForm();
+    PAGE_LOGIN_WRRAPER.innerHTML = '';
     PAGE_LOGIN_WRRAPER.classList.add('login--active');
   }
 } 

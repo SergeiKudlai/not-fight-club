@@ -5,6 +5,10 @@
   justify-content: center;
 }
 
+.start-page--active {
+  display: none;
+}
+
 .start-page__container {
   flex: 1 1 100%;
   height: calc(100vh - 20rem);
@@ -46,4 +50,3 @@
     transform: rotate(-180deg);
   }
 }
-
