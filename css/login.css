@@ -14,10 +14,33 @@
   align-items: center;
 }
 
+.login__wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  flex: 1 1 100%;
+  max-width: 30rem;
+}
+
+.login__wrapper--active {
+  display: none;
+}
+
+.login__title {
+  background-color: var(--white);
+  text-align: center;
+  border-radius: 2.5rem;
+  padding: 1rem;
+}
+
 .login__inner {
   display: flex;
   flex-direction: column;
   row-gap: 1.5rem;
+}
+
+.login__inner--active {
+  display: none;
 }
 
 .login__text {
@@ -33,7 +56,6 @@
   color: var(--black);
   width: 100%;
 }
-
 
 .login__enter-text::placeholder {
   font-size: 1.4rem;

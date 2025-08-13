@@ -9,7 +9,7 @@ export const createPageSetting = () => {
          <h2 class="setting-page__name">${localStorage.getItem('name-person')}</h2>
 
          <label class="sr-only" for="new_name"></label>
-         <input class="login__enter-text login__enter-text--active" type="text" id="new_name" placeholder="Enter new user" minlength="4" maxlength="17" autocomplete="off" id="">
+         <input class="login__enter-text login__enter-text--active" type="text" id="new_name" placeholder="Enter new name" minlength="4" maxlength="17" autocomplete="off" title="minimum 4 letters">
 
          <button class="setting-page__btn btn" type="button" data-control>Rename User</button>
       </div>

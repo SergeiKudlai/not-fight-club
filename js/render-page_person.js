@@ -233,7 +233,6 @@ export const createPagePlayer = () => {
     localStorage.setItem('data-player', JSON.stringify(GET_ACTIVE_PLAYER_DATA));
     const { name, image, attacket, health, defense, critical_damage } = GET_ACTIVE_PLAYER_DATA;
 
-
     const HTML = `
         <h2 class="player-page__name">${name}</h2>
         <div class="player-page__inner">
