@@ -9,9 +9,9 @@ export const createPageSetting = () => {
          <h2 class="setting-page__name">${localStorage.getItem('name-person')}</h2>
 
          <label class="sr-only" for="new_name"></label>
-         <input class="login__enter-text login__enter-text--active" type="text" id="new_name" placeholder="Введите новое имя пользователя" minlength="4" maxlength="17" autocomplete="off" id="">
+         <input class="login__enter-text login__enter-text--active" type="text" id="new_name" placeholder="Enter new user" minlength="4" maxlength="17" autocomplete="off" id="">
 
-         <button class="setting-page__btn btn" type="button" data-control>Изменить имя пользователя</button>
+         <button class="setting-page__btn btn" type="button" data-control>Rename User</button>
       </div>
     </div>
   `
@@ -36,12 +36,12 @@ export const createPageSetting = () => {
 
   const updateStatusElments = (btn) => {
     if (!btn.hasAttribute('data-control')) {
-      btn.textContent = 'Изменить имя пользователя';
+      btn.textContent = 'Rename User';
       btn.setAttribute('data-control', '');
       INPUT.classList.add('login__enter-text--active');
       setUpdatePersonName();
     } else {
-      btn.textContent = 'сохранить';
+      btn.textContent = 'Save';
       INPUT.classList.remove('login__enter-text--active');
       btn.removeAttribute('data-control');
       btn.setAttribute('disabled', '');

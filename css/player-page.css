@@ -1,0 +1,176 @@
+.player-page {
+  flex: 1 1 100%;
+  display: flex;
+}
+
+.player-page--active {
+  display: none;
+}
+
+.player-page__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.player-page__name {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.player-page__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.player-page__static-fight, .player-page__characteristics {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.player-page__static-item, .player-page__characteristics-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 1rem;
+}
+
+.player-page__static-item:first-child {
+  color: var(--green);
+}
+
+.player-page__static-item:last-child {
+  color: var(--red);
+}
+
+.player-page__characteristics-item {
+  position: relative;
+  padding-left: 3rem;
+}
+
+.player-page__characteristics-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 3rem;
+}
+
+.player-page__characteristics-item--health::before {
+  background-image: url("../assetes/icon/icon-health.png");
+  background-size: contain;
+}
+
+.player-page__characteristics-item--defense::before {
+  background-image: url("../assetes/icon/icon-guard.png");
+}
+
+.player-page__characteristics-item--attacket::before {
+  background-image: url("../assetes/icon/icon-sword.png");
+  background-size: contain;
+}
+
+.player-page__characteristics-item--critical-damage::before {
+  background-image: url("../assetes/icon/icon-critival_attack.png");
+}
+
+.slider-player {
+  display: flex;
+  align-items: center;
+  height: 50%;
+}
+
+.slider-player__box-left {
+  display: flex;
+  flex: 1 1 50%;
+  column-gap: 2.5rem;
+  align-self: stretch;
+}
+
+.slider-player__box-right {
+  flex: 1 1 50%;
+}
+
+.slider-player__btn {
+  align-self: center;
+  background: url("../assetes/icon/arrow-slider.png")no-repeat center/cover;
+  width: 10%;
+  height: 10%;
+  transition: opacity 0.4s linear;
+}
+
+.slider-player__btn-left {
+  transform: rotate(-180deg);
+}
+
+.slider-player__btn-left:hover,
+.slider-player__btn-right:hover {
+  opacity: 0.6;
+}
+
+.slider-player__inner {
+  display: flex;
+  overflow: hidden;
+  flex: 1 1 50%;
+}
+
+.slider-player__slides {
+  position: relative;
+  padding-left: 100%;
+  animation-duration: 1s;
+}
+
+.slider-player__slides-left {
+  animation-name: slider-left;
+}
+
+.slider-player__slides-right {
+  animation-name: slider-right;
+}
+
+.slider-player__slides-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.characteristics-player {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+  align-items: center;
+}
+
+@keyframes slider-left {
+  from {
+    left: -100%;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+@keyframes slider-right {
+  from {
+    right: 0;
+  }
+
+  to {
+    right: 100%;
+  }
+}

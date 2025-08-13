@@ -11,6 +11,7 @@ export const createPageStart = () => {
 
   const html = `
     <div class="start-page__container container">
+      <h1 class="sr-only">Fight Page</h1>
       <button class="start-page__btn" type="button" disabled></button>
     </div>
   `;

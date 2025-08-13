@@ -1,6 +1,8 @@
 import { createPageLogin } from './js/render-page_login.js';
 import { createPageStart } from './js/render-page_start.js';
 import { createPageSetting } from './js/render-page_setting.js';
+import { createPagePlayer } from './js/render-page_person.js';
+import {updatePageNameOnHeader} from './js/globalScript.js';
 
 createPageLogin();
 
@@ -13,15 +15,10 @@ BTN_SUBMIT_LOGIN_PAGE.addEventListener('click', () => {
   createPageStart();
 })
 
-
-const updatePageNameOnHeader = (name, header) => {
-  const NAME_PAGE = header.querySelector('.icon-contetn__page');
-  NAME_PAGE.textContent = name.toUpperCase();
-}
-
 const setStationPagesDisplayNone = (nameSection, header) => {
   const START_PAGE = document.querySelector('.start-page');
   const SETTING_PAGE = document.querySelector('.setting-page');
+  const PLAYER_PAGE = document.querySelector('.player-page');
   const BTN_SETTING = header.querySelector('.header-list__btn-setting');
   const BTN_HOME = header.querySelector('.header-list__btn-home');
   const BTN_PLAYER = header.querySelector('.header-list__btn-player');
@@ -29,17 +26,33 @@ const setStationPagesDisplayNone = (nameSection, header) => {
   switch (nameSection) {
     case ('setting'):
       START_PAGE.classList.add('start-page--active');
+      PLAYER_PAGE.classList.add('player-page--active');
       SETTING_PAGE.classList.remove('setting-page--active');
+      PLAYER_PAGE.innerHTML = '';
       createPageSetting();
       BTN_SETTING.setAttribute('disabled', '');
+      BTN_PLAYER.removeAttribute('disabled');
       BTN_HOME.removeAttribute('disabled');
       break;
     case ('home'):
+      PLAYER_PAGE.classList.add('player-page--active');
       SETTING_PAGE.classList.add('setting-page--active');
       SETTING_PAGE.innerHTML = '';
+      PLAYER_PAGE.innerHTML = '';
       START_PAGE.classList.remove('start-page--active');
-      BTN_SETTING.removeAttribute('disabled');
       BTN_HOME.setAttribute('disabled', '');
+      BTN_PLAYER.removeAttribute('disabled');
+      BTN_SETTING.removeAttribute('disabled');
+      break;
+    case ('player'):
+      PLAYER_PAGE.classList.remove('player-page--active');
+      START_PAGE.classList.add('start-page--active');
+      SETTING_PAGE.classList.add('setting-page--active');
+      SETTING_PAGE.innerHTML = '';
+      BTN_HOME.removeAttribute('disabled');
+      BTN_PLAYER.setAttribute('disabled', '');
+      BTN_SETTING.removeAttribute('disabled');
+      createPagePlayer();
       break;
     default:
       throw Error('is Problem router Page');
@@ -54,6 +67,12 @@ HEADER.addEventListener('click', function ({ target }) {
   }
 
   if (target.classList.contains('header-list__btn-home')) {
+    const NAME_BTN_PAGE = target.dataset.name;
+    updatePageNameOnHeader(NAME_BTN_PAGE, this);
+    setStationPagesDisplayNone(NAME_BTN_PAGE, this);
+  }
+
+  if (target.classList.contains('header-list__btn-player')) {
     const NAME_BTN_PAGE = target.dataset.name;
     updatePageNameOnHeader(NAME_BTN_PAGE, this);
     setStationPagesDisplayNone(NAME_BTN_PAGE, this);

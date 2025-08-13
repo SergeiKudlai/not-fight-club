@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url("../assetes/images/home_bg.jpg")no-repeat center/cover;
 }
 
 .start-page--active {
