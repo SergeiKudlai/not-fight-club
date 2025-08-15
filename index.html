@@ -18,25 +18,30 @@
 
         <span class="icon-contetn__page">HOME</span>
 
-        <ul class="header-list">
-          <li class="header-list__item">
-            <button class="header-list__btn header-list__btn-home" type="button" data-name="home" disabled></button>
-          </li>
-          <li class="header-list__item">
-            <button class="header-list__btn header-list__btn-player" type="button" data-name="player"></button>
-          </li>
-          <li class="header-list__item">
-            <button class="header-list__btn header-list__btn-setting" type="button" data-name="setting"></button>
-          </li>
-        </ul>
+        <nav class="icon-contetn__navigation">
+          <ul class="header-list">
+            <li class="header-list__item">
+              <button class="header-list__btn header-list__btn-home" type="button" data-name="home" disabled></button>
+            </li>
+
+            <li class="header-list__item">
+              <button class="header-list__btn header-list__btn-player" type="button" data-name="player"></button>
+            </li>
+
+            <li class="header-list__item">
+              <button class="header-list__btn header-list__btn-setting" type="button" data-name="setting"></button>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
 
     <main class="main">
       <section class="login"></section>
       <section class="start-page"></section>
-      <section class="setting-page"></section>
-      <section class="player-page"></section>
+      <section class="setting-page setting-page--active"></section>
+      <section class="player-page player-page--active"></section>
+      <section class="fight-page"></section>
     </main>
 
     <footer class="footer footer--active">

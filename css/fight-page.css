@@ -1,0 +1,136 @@
+.fight-page {
+  flex: 1 1 100%;
+  display: flex;
+}
+
+.fight-page--active {
+  display: none;
+}
+
+.fight-page__container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  flex: 1 1 100%;
+  row-gap: 1.5rem;
+}
+
+.fight-box {
+  display: flex;
+  align-items: center;
+  column-gap: 1.5rem;
+}
+
+.fight-box__item {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+}
+
+.fight-box__name {
+  margin-bottom: 2rem;
+  align-self: center;
+}
+
+.fight-box__images-box {
+  justify-items: center;
+}
+
+.fight-box__bar-health {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.fight-box__health-list {
+  display: flex;
+  align-items: center;
+  align-self: center;
+}
+
+.battle-box {
+  align-self: stretch;
+  justify-content: space-between;
+}
+
+.battle-box__text {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.battle-box__fight-zone {
+  display: flex;
+  justify-content: space-between;
+}
+
+.attack-zone,
+.defense-zone {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.battle-box__title-zone {
+  margin-bottom: 1.5rem;
+}
+
+.battle-box__inner {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.battle-box__inner::after, .battle-box__inner::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 1px;
+  transition-property: left, right;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+}
+
+.battle-box__inner::after {
+  background-color: red;
+  right: 50%;
+}
+
+.battle-box__inner::before {
+  background-color: blue;
+  left: 50%;
+}
+
+.battle-box__inner:hover.battle-box__inner::before {
+  right: 50%;
+  left: 0;
+}
+
+.battle-box__inner:hover.battle-box__inner::after {
+  left: 50%;
+  right: 0;
+}
+
+.battle-box__inner,
+.battle-box__item {
+  cursor: pointer;
+}
+
+.defense-zone>.battle-box__inner {
+  flex-direction: row-reverse;
+}
+
+.battle-box__slach-zone {
+  width: 0.1rem;
+  background-color: var(--color_gold-1);
+}
+
+.fight-page__bottom {
+  flex: 1 1 30rem;
+  border: 0.1rem solid var(--color_gold-1);
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+  padding: 2rem;
+  overflow-y: auto;
+}

@@ -1,4 +1,5 @@
 import { GOOD_PERSON } from './goodPerson.js';
+import { getRandomPerson } from './globalScript.js';
 
 export const createPageLogin = (control) => {
   const PAGE_LOGIN_WRRAPER = document.querySelector('.login');
@@ -61,9 +62,7 @@ export const createPageLogin = (control) => {
   }
 
   const setRandomPlayerLocalStorage = () => {
-    const RANDOM_NUMBER = Math.floor(Math.random() * GOOD_PERSON.length);
-    const RANDOM_PLAYER = GOOD_PERSON[RANDOM_NUMBER];
-    localStorage.setItem('data-player', JSON.stringify(RANDOM_PLAYER));
+    localStorage.setItem('data-player', JSON.stringify(getRandomPerson(GOOD_PERSON)));
     localStorage.setItem('wins', 0);
     localStorage.setItem('loses', 0);
   }
