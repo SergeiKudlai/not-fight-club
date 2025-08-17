@@ -8,7 +8,7 @@ export const EVIL_PERSON = [
     attacket: 35,
     critical_damage: 15,
     special: {
-      doubleAttack: true,
+      attackZone: 2,
       defenseZone: 1
     }
   },
@@ -21,7 +21,7 @@ export const EVIL_PERSON = [
     attacket: 20,
     critical_damage: 10,
     special: {
-      doubleAttack: false,
+      attackZone: 1,
       defenseZone: 3
     }
   },
@@ -34,7 +34,7 @@ export const EVIL_PERSON = [
     attacket: 40,
     critical_damage: 30,
     special: {
-      doubleAttack: false,
+      attackZone: 2,
       defenseZone: 1
     }
   },
@@ -42,12 +42,12 @@ export const EVIL_PERSON = [
     id: 4,
     name: 'White Orc',
     image: '../assetes/images-person/evil-person/evil-person_4.png',
-    health: 350,
+    health: 330,
     defense: 0,
-    attacket: 35,
-    critical_damage: 5,
+    attacket: 15,
+    critical_damage: 10,
     special: {
-      doubleAttack: false,
+      attackZone: 3,
       defenseZone: 0
     }
   },
@@ -60,7 +60,7 @@ export const EVIL_PERSON = [
     attacket: 40,
     critical_damage: 15,
     special: {
-      doubleAttack: true,
+      attackZone: 1,
       defenseZone: 2
     }
   },
@@ -73,7 +73,7 @@ export const EVIL_PERSON = [
     attacket: 30,
     critical_damage: 20,
     special: {
-      doubleAttack: false,
+      attackZone: 1,
       defenseZone: 3
     }
   },
@@ -86,7 +86,7 @@ export const EVIL_PERSON = [
     attacket: 30,
     critical_damage: 25,
     special: {
-      doubleAttack: true,
+      attackZone: 2,
       defenseZone: 2
     }
   },

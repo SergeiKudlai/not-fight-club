@@ -34,8 +34,9 @@ export const createPageFight = (pageStartBtnFight) => {
     localStorage.setItem('person-evil-health', EVIL_PERSON_LOCAL_ST.health);
   }
 
-  localStorage.setItem('person-good-health', GOOD_PERSON_LOCAL_ST.health);
-
+  if (!localStorage.getItem('person-good-health')) {
+    localStorage.setItem('person-good-health', GOOD_PERSON_LOCAL_ST.health);
+  }
 
   const HTML = ` 
     <div class="fight-page__container container">
@@ -49,10 +50,10 @@ export const createPageFight = (pageStartBtnFight) => {
             <img class="fight-box__images" src="${GOOD_PERSON_LOCAL_ST.image}" alt="${GOOD_PERSON_LOCAL_ST.name}" height="400">
           </div>
 
-          <progress class="fight-box__bar-health" max="${GOOD_PERSON_LOCAL_ST.health}" value="${localStorage.getItem('person-good-health')}"></progress>
+          <progress class="fight-box__bar-health fight-box__good-person__bar" max="${GOOD_PERSON_LOCAL_ST.health}" value="${localStorage.getItem('person-good-health')}"></progress>
           
           <ul class="fight-box__health-list">
-            <li class="fight-box__health-item">
+            <li class="fight-box__health-item fight-box__health-item__current-good">
             ${localStorage.getItem('person-good-health')}
             </li>
 
@@ -145,7 +146,7 @@ export const createPageFight = (pageStartBtnFight) => {
           <progress class="fight-box__bar-health fight-box__evil-person__bar" max="${EVIL_PERSON_LOCAL_ST.health}" value="${localStorage.getItem('person-evil-health')}"></progress>
           
           <ul class="fight-box__health-list">
-            <li class="fight-box__health-item fight-box__health-item__current">
+            <li class="fight-box__health-item fight-box__health-item__current-evil">
             ${localStorage.getItem('person-evil-health')}
             </li>
 
@@ -164,12 +165,11 @@ export const createPageFight = (pageStartBtnFight) => {
 
   FIGHT_PAGE.insertAdjacentHTML('beforeend', HTML);
 
-  
+
   const BTN_ATTACK = document.querySelector('.battle-box__btn');
   const ATTACK_ELEMENT = document.querySelectorAll('.attack-zone__item');
   const DEFENSE_ELEMENT = document.querySelectorAll('.defense-zone__item');
   const LOGO_FIGHT_BOX = document.querySelector('.fight-page__bottom');
-  const ARRAY_LOGO_FIGHT = [];
   let attackControl = false;
   let defenseControl = false;
 
@@ -228,11 +228,15 @@ export const createPageFight = (pageStartBtnFight) => {
   }
 
   const getDefenseGoodPersonZone = () => {
+    let defenseZone = [];
+
     DEFENSE_ELEMENT.forEach(({ checked, name }) => {
       if (checked) {
-        return name;
+        defenseZone.push(name);
       }
     })
+
+    return defenseZone;
   }
 
   const getDefenseEvilPerson = () => {
@@ -255,7 +259,7 @@ export const createPageFight = (pageStartBtnFight) => {
 
   const updateStationHealthEvilPerson = (damageGoodPerson) => {
     const EVIL_PERSON_BAR = document.querySelector('.fight-box__evil-person__bar');
-    const EVIL_PERSON_CURRENT = document.querySelector('.fight-box__health-item__current');
+    const EVIL_PERSON_CURRENT = document.querySelector('.fight-box__health-item__current-evil');
     const GET_EVIL_PERSON_HEALTH = localStorage.getItem('person-evil-health');
     const CALC_HEALTH_PERSON = GET_EVIL_PERSON_HEALTH - damageGoodPerson;
     localStorage.setItem('person-evil-health', CALC_HEALTH_PERSON);
@@ -263,7 +267,19 @@ export const createPageFight = (pageStartBtnFight) => {
     EVIL_PERSON_CURRENT.textContent = localStorage.getItem('person-evil-health');
   }
 
+  const updateStationHealthGoodPerson = (damageEvilPerson) => {
+    const GOOD_PERSON_BAR = document.querySelector('.fight-box__good-person__bar');
+    const EVIL_PERSON_CURRENT = document.querySelector('.fight-box__health-item__current-good');
+    const GET_GOOD_PERSON_HEALTH = localStorage.getItem('person-good-health');
+    const CALC_HEALTH_PERSON = GET_GOOD_PERSON_HEALTH - damageEvilPerson;
+    localStorage.setItem('person-good-health', CALC_HEALTH_PERSON);
+    GOOD_PERSON_BAR.value = localStorage.getItem('person-good-health');
+    EVIL_PERSON_CURRENT.textContent = localStorage.getItem('person-good-health');
+  }
+
   const setValuesLocalStorageConsoleFight = (textLogoFight) => {
+    const ARRAY_LOGO_FIGHT = [];
+
     if (localStorage.getItem('logo-fight')) {
       const ACTIVE_LOGO_FIGHT = localStorage.getItem('logo-fight');
       ARRAY_LOGO_FIGHT.push(ACTIVE_LOGO_FIGHT, textLogoFight);
@@ -277,11 +293,12 @@ export const createPageFight = (pageStartBtnFight) => {
   const renderNotPersonEvilZoneBlock = (attackGoodPerson, defenseZoneEvilPerson) => {
     const { attacket, name: name_good_person, critical_damage } = GOOD_PERSON_LOCAL_ST;
     const { name: name_evil_person } = EVIL_PERSON_LOCAL_ST;
-    const { text, damage } = setCriticalDamagePersons(critical_damage, attacket);
+    const { text, damage } = setCriticalDamagePersons(critical_damage, attacket, attackGoodPerson.length);
+
 
     const HTML = `
       <p>
-      ${name_good_person} атоковал зону ${attackGoodPerson}, ${name_evil_person} заблокировал зоны ${defenseZoneEvilPerson} атака прошла ${text}
+      ${name_good_person} атоковал зону ${attackGoodPerson}, ${name_evil_person} заблокировал зоны ${Array.isArray(defenseZoneEvilPerson) ? defenseZoneEvilPerson.join(' ') : defenseZoneEvilPerson}, атака прошла ${text}
       </p>`
 
     LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
@@ -292,11 +309,11 @@ export const createPageFight = (pageStartBtnFight) => {
   const rendePersonEvilHasBlock = (attackGoodPerson, defenseZoneEvilPerson) => {
     const { attacket, name: name_good_person, critical_damage } = GOOD_PERSON_LOCAL_ST;
     const { name: name_evil_person } = EVIL_PERSON_LOCAL_ST;
-    const { change, text, damage } = setCriticalDamagePersons(critical_damage, attacket);
+    const { change, text, damage } = setCriticalDamagePersons(critical_damage, attacket, attackGoodPerson.length);
 
     const HTML = `
       <p>
-      ${name_good_person} атоковал зону ${attackGoodPerson}, ${name_evil_person} заблокировал зоны ${defenseZoneEvilPerson} ${change ? text : 'атака заблокирована'}
+      ${name_good_person} атоковал зону ${attackGoodPerson}, ${name_evil_person} заблокировал зоны ${defenseZoneEvilPerson.join(' ')}, ${change ? text : 'атака заблокирована'}
       </p>`
 
     LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
@@ -311,17 +328,117 @@ export const createPageFight = (pageStartBtnFight) => {
 
     if (dataDefenseEvil.length !== 0) {
       controlZoneAttackAndZoneDefense = dataDefenseEvil.map((element) => element.replaceAll('defense-', '')).filter((element) => element === stringZoneAttackGoodPerson);
-      defenseZoneEvilPerson = dataDefenseEvil.map((element) => element.replaceAll('defense-', '')).join(' ');
+      defenseZoneEvilPerson = dataDefenseEvil.map((element) => element.replaceAll('defense-', ''));
     } else {
       defenseZoneEvilPerson = 'нет зон блока';
     }
 
-    // нету блока
     if (controlZoneAttackAndZoneDefense.length === 0) {
-      renderNotPersonEvilZoneBlock(stringZoneAttackGoodPerson, defenseZoneEvilPerson);
+      renderNotPersonEvilZoneBlock([stringZoneAttackGoodPerson], defenseZoneEvilPerson);
     } else {
-      // есть блок
-      rendePersonEvilHasBlock(stringZoneAttackGoodPerson, defenseZoneEvilPerson);
+      rendePersonEvilHasBlock([stringZoneAttackGoodPerson], defenseZoneEvilPerson);
+    }
+  }
+
+  // defense Good Person and attack evil person
+  const renderNotPersonGoodZoneBlock = (attackZoneEvilPerson, defenseZoneGoodPerson) => {
+    const { name: name_good_person } = GOOD_PERSON_LOCAL_ST;
+    const { name: name_evil_person, attacket, critical_damage } = EVIL_PERSON_LOCAL_ST;
+    const { text, damage } = setCriticalDamagePersons(critical_damage, attacket, attackZoneEvilPerson.length);
+
+    const HTML = `
+      <p>
+      ${name_evil_person} атоковал зону ${attackZoneEvilPerson.join(' ')}, ${name_good_person} заблокировал зоны ${defenseZoneGoodPerson.join(' ')}, атака прошла ${text}
+      </p>`
+
+    LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
+    updateStationHealthGoodPerson(damage);
+    setValuesLocalStorageConsoleFight(HTML);
+  }
+
+  const renderPersonGoodHasBlock = (attackZoneEvilPerson, defenseZoneGoodPerson) => {
+    const { name: name_good_person } = GOOD_PERSON_LOCAL_ST;
+    const { name: name_evil_person, attacket, critical_damage } = EVIL_PERSON_LOCAL_ST;
+    const { text, damage, change } = setCriticalDamagePersons(critical_damage, attacket, attackZoneEvilPerson.length);
+
+
+    if (attackZoneEvilPerson.length > 1) {
+      if (change) {
+        const HTML = `
+          <p>
+           ${name_evil_person} атоковал зону ${attackZoneEvilPerson.join(' ')}, ${name_good_person} заблокировал зоны ${defenseZoneGoodPerson.join(' ')}, ${text} по ${attackZoneEvilPerson.length} зонам
+          </p>`
+
+        LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
+
+        updateStationHealthGoodPerson(damage);
+        setValuesLocalStorageConsoleFight(HTML);
+      } else {
+        let result = attackZoneEvilPerson.join(' ');
+
+        defenseZoneGoodPerson.forEach((elementDefense) => {
+          result = result.replace(elementDefense, '');
+        })
+
+        const SUCCESSEFUL_ATTACK = result.trim().split(' ');
+        const EVIL_PERSON_DAMAGE_NO_CRITICAL = attacket * SUCCESSEFUL_ATTACK.length;
+
+        const HTML = `
+          <p>
+           ${name_evil_person} атоковал зону ${attackZoneEvilPerson.join(' ')}, ${name_good_person} заблокировал зоны ${defenseZoneGoodPerson.join(' ')}, нанесен урон ${EVIL_PERSON_DAMAGE_NO_CRITICAL}
+          </p>`
+
+        LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
+        updateStationHealthGoodPerson(EVIL_PERSON_DAMAGE_NO_CRITICAL);
+        setValuesLocalStorageConsoleFight(HTML);
+      }
+    } else {
+      const HTML = `
+        <p>
+        ${name_evil_person} атоковал зону ${attackZoneEvilPerson.join(' ')}, ${name_good_person} заблокировал зоны ${defenseZoneGoodPerson.join(' ')}, ${change ? text : 'атака заблокирована'}
+        </p>`
+
+      LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
+      updateStationHealthGoodPerson(change ? damage : 0);
+      setValuesLocalStorageConsoleFight(HTML);
+    }
+  }
+
+  const getAttackZoneEvilPerosn = () => {
+    const { special: { attackZone } } = EVIL_PERSON_LOCAL_ST;
+    const RANDOM_NUM_ATTACK_ZONE = getRandomUnicomRandom(attackZone, ATTACK_ELEMENT);
+
+    const ZONE_ATTACK_EVIL_PERSON = [];
+
+    [...ATTACK_ELEMENT].forEach((elements, index) => {
+      RANDOM_NUM_ATTACK_ZONE.forEach((numRandom) => {
+        if (numRandom === index) {
+          ZONE_ATTACK_EVIL_PERSON.push(elements.name);
+        }
+      })
+    })
+
+    return ZONE_ATTACK_EVIL_PERSON;
+  }
+
+  const setDefenseGoodPerson = (dataDefenseGoodPerson, dataAttackEvilPerson) => {
+    const controlZoneAttackAndZoneDefense = [];
+    const ZOME_ATTACK_EVIL = dataAttackEvilPerson.map((zoneAttackEvil) => zoneAttackEvil.replace('attack-', ''));
+    const ZONE_DEFENSE_GOOD_PERSON = dataDefenseGoodPerson.map((element) => element.replace('defense-', ''));
+
+
+    ZONE_DEFENSE_GOOD_PERSON.forEach((elementDefenseGoodPerson) => {
+      ZOME_ATTACK_EVIL.forEach((elementAttackEvilPerson) => {
+        if (elementDefenseGoodPerson === elementAttackEvilPerson) {
+          controlZoneAttackAndZoneDefense.push(elementDefenseGoodPerson);
+        }
+      })
+    })
+
+    if (controlZoneAttackAndZoneDefense.length === 0) {
+      renderNotPersonGoodZoneBlock(ZOME_ATTACK_EVIL, ZONE_DEFENSE_GOOD_PERSON);
+    } else {
+      renderPersonGoodHasBlock(ZOME_ATTACK_EVIL, ZONE_DEFENSE_GOOD_PERSON);
     }
   }
 
@@ -330,6 +447,8 @@ export const createPageFight = (pageStartBtnFight) => {
     const ZONE_ATTACK_GOOD_PERSON = getAttackGoodPersonZone();
     const DEFENSE_EVIL_PERSON_DATA = getDefenseEvilPerson();
     setDefenseEvilPerson(DEFENSE_EVIL_PERSON_DATA, ZONE_ATTACK_GOOD_PERSON);
-    // getDefenseGoodPersonZone();
+    const ZONE_DEFENSE_GOOD_PEROSN = getDefenseGoodPersonZone();
+    const ZONE_ATTACK_EVIL_PERSON = getAttackZoneEvilPerosn();
+    setDefenseGoodPerson(ZONE_DEFENSE_GOOD_PEROSN, ZONE_ATTACK_EVIL_PERSON);
   })
 }

@@ -24,19 +24,20 @@ export const getRandomUnicomRandom = (countNumber, zoneLength) => {
   return [...UNICUM_NUMBER];
 }
 
-export const setCriticalDamagePersons = (changeCriticalDamage, attack) => {
+export const setCriticalDamagePersons = (changeCriticalDamage, attack, checked) => {
   const CHANGE_RANDOM = Math.floor(Math.random() * 100);
+
   if (CHANGE_RANDOM <= changeCriticalDamage) {
     return {
       change: true,
-      text: `нанесен критический урон ${attack * 1.5}`,
-      damage: attack * 1.5
+      text: `нанесен критический урон ${(attack * checked) * 1.5}`,
+      damage: (attack * checked) * 1.5
     }
   } else {
     return {
       change: false,
-      text: `нанесен урон ${attack}`,
-      damage: attack
+      text: `нанесен урон ${attack * checked}`,
+      damage: attack * checked
     }
   }
 }
