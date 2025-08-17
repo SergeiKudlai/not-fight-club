@@ -3,7 +3,7 @@ import { GOOD_PERSON } from './goodPerson.js';
 export const createPagePlayer = () => {
   const PLAYER_PAGE = document.querySelector('.player-page');
   const GET_PLAYER = JSON.parse(localStorage.getItem('data-player'));
-  const { name, image, health, defense, attacket, critical_damage } = GET_PLAYER;
+  const { name, image, health, attacket, critical_damage } = GET_PLAYER;
 
 
   const HTML = `
@@ -32,13 +32,6 @@ export const createPagePlayer = () => {
               HEALTH : 
               <span class="player-page__characteristics-health">
                 ${health}
-              </span>
-            </li>
-
-            <li class="player-page__characteristics-item player-page__characteristics-item--defense">
-              DEFENSE : 
-              <span class="player-page__characteristics-defense">
-                ${defense}
               </span>
             </li>
 
@@ -86,11 +79,6 @@ export const createPagePlayer = () => {
           </li>
 
           <li class="characteristics-player__items">
-            DEFENSE:
-            <span class="characteristics-player__items-defense">${GOOD_PERSON[0].defense}</span>
-          </li>
-
-          <li class="characteristics-player__items">
             HEALTH:
             <span class="characteristics-player__items-health">${GOOD_PERSON[0].health}</span>
           </li>
@@ -103,8 +91,28 @@ export const createPagePlayer = () => {
       </div>
       <button class="player-page__select-btn btn" type="button">Select Person</button>
     </div>
+
+    <div class="player-page__modal modal-player modal-player--active">
+      <div class="modal-player__container container"> 
+        <p class="modal-player__text">
+          To select a character, </br>complete the current battle
+        </p>
+      </div>
+    </div>
   `
   PLAYER_PAGE.insertAdjacentHTML('beforeend', HTML);
+
+  const checkedWindowModal = () => {
+    const PLAYER_PAGE_CONTAINER = document.querySelector('.player-page__container');
+    const PLAYER_PAGE_MODAL = document.querySelector('.player-page__modal');
+
+    if (localStorage.getItem('active-fight')) {
+      PLAYER_PAGE_CONTAINER.classList.add('player-page__container--active');
+      PLAYER_PAGE_MODAL.classList.remove('modal-player--active');
+    }
+  }
+
+  checkedWindowModal();
 
 
   const SLIDES_BOX = document.querySelector('.slider-player__inner');
@@ -194,7 +202,7 @@ export const createPagePlayer = () => {
       default: throw Error('Not Update characteristics Person');
     }
 
-    const { name, attacket, defense, health, critical_damage } = ACTIVE_PLAYER;
+    const { name, attacket, health, critical_damage } = ACTIVE_PLAYER;
     const HTML = `
               <li class="characteristics-player__items">
             NAME:
@@ -204,11 +212,6 @@ export const createPagePlayer = () => {
           <li class="characteristics-player__items">
             ATTACKET:
             <span class="characteristics-player__items-attacket">${attacket}</span>
-          </li>
-
-          <li class="characteristics-player__items">
-            DEFENSE:
-            <span class="characteristics-player__items-defense">${defense}</span>
           </li>
 
           <li class="characteristics-player__items">
@@ -231,7 +234,8 @@ export const createPagePlayer = () => {
     const GET_ID_PALYER = [...SLIDES_BOX.children][0].dataset.id;
     const GET_ACTIVE_PLAYER_DATA = GOOD_PERSON.filter(({ id }) => String(id) === GET_ID_PALYER)[0];
     localStorage.setItem('data-player', JSON.stringify(GET_ACTIVE_PLAYER_DATA));
-    const { name, image, attacket, health, defense, critical_damage } = GET_ACTIVE_PLAYER_DATA;
+    const { name, image, attacket, health, critical_damage } = GET_ACTIVE_PLAYER_DATA;
+    localStorage.setItem('person-good-health', health);
 
     const HTML = `
         <h2 class="player-page__name">${name}</h2>
@@ -256,13 +260,6 @@ export const createPagePlayer = () => {
               HEALTH : 
               <span class="player-page__characteristics-health">
                 ${health}
-              </span>
-            </li>
-
-            <li class="player-page__characteristics-item player-page__characteristics-item--defense">
-              DEFENSE : 
-              <span class="player-page__characteristics-defense">
-                ${defense}
               </span>
             </li>
 

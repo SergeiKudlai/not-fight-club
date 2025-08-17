@@ -30,13 +30,13 @@ export const setCriticalDamagePersons = (changeCriticalDamage, attack, checked) 
   if (CHANGE_RANDOM <= changeCriticalDamage) {
     return {
       change: true,
-      text: `нанесен критический урон ${(attack * checked) * 1.5}`,
+      text: `атака прошла нанесен критический урон ${(attack * checked) * 1.5}.`,
       damage: (attack * checked) * 1.5
     }
   } else {
     return {
       change: false,
-      text: `нанесен урон ${attack * checked}`,
+      text: `нанесен урон ${attack * checked}.`,
       damage: attack * checked
     }
   }

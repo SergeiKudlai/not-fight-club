@@ -161,6 +161,14 @@ export const createPageFight = (pageStartBtnFight) => {
 
       <div class="fight-page__bottom"></div>
     </div>
+
+    <div class="fight-page__modal modal-fight modal-fight--active">
+      <div class="modal-fight__inner">
+        <span class="modal-fight__text"></span>
+
+        <button class="modal-fight__btn btn" type="button">Go to start page</button>
+      </div>
+    </div>
   `;
 
   FIGHT_PAGE.insertAdjacentHTML('beforeend', HTML);
@@ -170,6 +178,7 @@ export const createPageFight = (pageStartBtnFight) => {
   const ATTACK_ELEMENT = document.querySelectorAll('.attack-zone__item');
   const DEFENSE_ELEMENT = document.querySelectorAll('.defense-zone__item');
   const LOGO_FIGHT_BOX = document.querySelector('.fight-page__bottom');
+  const BTN_MODAL = document.querySelector('.modal-fight__btn');
   let attackControl = false;
   let defenseControl = false;
 
@@ -297,8 +306,8 @@ export const createPageFight = (pageStartBtnFight) => {
 
 
     const HTML = `
-      <p>
-      ${name_good_person} атоковал зону ${attackGoodPerson}, ${name_evil_person} заблокировал зоны ${Array.isArray(defenseZoneEvilPerson) ? defenseZoneEvilPerson.join(' ') : defenseZoneEvilPerson}, атака прошла ${text}
+      <p class="fight-page__bottom-text">
+      <span class="fight-page__bottom-good_person">${name_good_person}</span> атоковал зону : <span class="fight-page__bottom-zone">${attackGoodPerson}</span> - <span class="fight-page__bottom-evil_person">${name_evil_person}</span> заблокировал зоны : <span class="fight-page__bottom-zone">${Array.isArray(defenseZoneEvilPerson) ? defenseZoneEvilPerson.join(' ') : defenseZoneEvilPerson}</span> - ${text}
       </p>`
 
     LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
@@ -312,8 +321,8 @@ export const createPageFight = (pageStartBtnFight) => {
     const { change, text, damage } = setCriticalDamagePersons(critical_damage, attacket, attackGoodPerson.length);
 
     const HTML = `
-      <p>
-      ${name_good_person} атоковал зону ${attackGoodPerson}, ${name_evil_person} заблокировал зоны ${defenseZoneEvilPerson.join(' ')}, ${change ? text : 'атака заблокирована'}
+      <p class="fight-page__bottom-text">
+      <span class="fight-page__bottom-good_person">${name_good_person}</span> атоковал зону : <span class="fight-page__bottom-zone">${attackGoodPerson}</span> - <span class="fight-page__bottom-evil_person">${name_evil_person}</span> заблокировал зоны : <span class="fight-page__bottom-zone">${defenseZoneEvilPerson.join(' ')}</span> - ${change ? text : '<span class="fight-page__bottom-block__attack">атака заблокирована</span>'}.
       </p>`
 
     LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
@@ -347,8 +356,8 @@ export const createPageFight = (pageStartBtnFight) => {
     const { text, damage } = setCriticalDamagePersons(critical_damage, attacket, attackZoneEvilPerson.length);
 
     const HTML = `
-      <p>
-      ${name_evil_person} атоковал зону ${attackZoneEvilPerson.join(' ')}, ${name_good_person} заблокировал зоны ${defenseZoneGoodPerson.join(' ')}, атака прошла ${text}
+      <p class="fight-page__bottom-text">
+      <span class="fight-page__bottom-evil_person">${name_evil_person}</span> атоковал зону : <span class="fight-page__bottom-zone">${attackZoneEvilPerson.join(' ')}</span> - <span class="fight-page__bottom-good_person">${name_good_person}</span> заблокировал зоны : <span class="fight-page__bottom-zone">${defenseZoneGoodPerson.join(' ')}</span> ${text}.
       </p>`
 
     LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
@@ -365,8 +374,8 @@ export const createPageFight = (pageStartBtnFight) => {
     if (attackZoneEvilPerson.length > 1) {
       if (change) {
         const HTML = `
-          <p>
-           ${name_evil_person} атоковал зону ${attackZoneEvilPerson.join(' ')}, ${name_good_person} заблокировал зоны ${defenseZoneGoodPerson.join(' ')}, ${text} по ${attackZoneEvilPerson.length} зонам
+          <p class="fight-page__bottom-text">
+           <span class="fight-page__bottom-evil_person">${name_evil_person}</span> атоковал зону : <span class="fight-page__bottom-zone">${attackZoneEvilPerson.join(' ')}</span> - <span class="fight-page__bottom-good_person">${name_good_person}</span> заблокировал зоны : <span class="fight-page__bottom-zone">${defenseZoneGoodPerson.join(' ')}</span> - ${text} по : ${attackZoneEvilPerson.length} зонам.
           </p>`
 
         LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
@@ -384,8 +393,8 @@ export const createPageFight = (pageStartBtnFight) => {
         const EVIL_PERSON_DAMAGE_NO_CRITICAL = attacket * SUCCESSEFUL_ATTACK.length;
 
         const HTML = `
-          <p>
-           ${name_evil_person} атоковал зону ${attackZoneEvilPerson.join(' ')}, ${name_good_person} заблокировал зоны ${defenseZoneGoodPerson.join(' ')}, нанесен урон ${EVIL_PERSON_DAMAGE_NO_CRITICAL}
+          <p class="fight-page__bottom-text">
+           <span class="fight-page__bottom-evil_person">${name_evil_person}</span> атоковал зону : <span class="fight-page__bottom-zone">${attackZoneEvilPerson.join(' ')}</span> - <span class="fight-page__bottom-good_person">${name_good_person}</span> заблокировал зоны : <span class="fight-page__bottom-zone">${defenseZoneGoodPerson.join(' ')}</span> нанесен урон - ${EVIL_PERSON_DAMAGE_NO_CRITICAL} по : ${attackZoneEvilPerson.length} зонам.
           </p>`
 
         LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
@@ -394,8 +403,8 @@ export const createPageFight = (pageStartBtnFight) => {
       }
     } else {
       const HTML = `
-        <p>
-        ${name_evil_person} атоковал зону ${attackZoneEvilPerson.join(' ')}, ${name_good_person} заблокировал зоны ${defenseZoneGoodPerson.join(' ')}, ${change ? text : 'атака заблокирована'}
+        <p class="fight-page__bottom-text">
+        <span class="fight-page__bottom-evil_person">${name_evil_person}</span> атоковал зону : <span class="fight-page__bottom-zone">${attackZoneEvilPerson.join(' ')}</span> - <span class="fight-page__bottom-good_person">${name_good_person}</span> заблокировал зоны : <span class="fight-page__bottom-zone">${defenseZoneGoodPerson.join(' ')}</span> - ${change ? text : '<span class="fight-page__bottom-block__attack">атака заблокирована</span>'}${change ? `${text} по : ${attackZoneEvilPerson.length} зонам` : '.'}
         </p>`
 
       LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
@@ -442,6 +451,42 @@ export const createPageFight = (pageStartBtnFight) => {
     }
   }
 
+  const setStatusFight = () => {
+    if (!localStorage.getItem('active-fight')) {
+      localStorage.setItem('active-fight', true);
+    }
+  }
+
+  const checkedEndFight = () => {
+    const MODAL_FIGHT = document.querySelector('.modal-fight');
+    const MODAL_FIGHT_TEXT = document.querySelector('.modal-fight__text');
+    const HEALTH_GOOD_PERSON = localStorage.getItem('person-good-health');
+    const HEALTH_EVIL_PERSON = localStorage.getItem('person-evil-health');
+
+
+    if (HEALTH_GOOD_PERSON <= 0) {
+      let loses = localStorage.getItem('loses');
+      loses++;
+      localStorage.setItem('loses', loses);
+      MODAL_FIGHT_TEXT.textContent = 'You lost!';
+    }
+
+    if (HEALTH_EVIL_PERSON <= 0) {
+      let wins = localStorage.getItem('wins');
+      wins++;
+      localStorage.setItem('wins', wins);
+      MODAL_FIGHT_TEXT.textContent = 'You Won!';
+    }
+
+    if (HEALTH_GOOD_PERSON <= 0 || HEALTH_EVIL_PERSON <= 0) {
+      localStorage.removeItem('active-fight');
+      localStorage.removeItem('logo-fight');
+      localStorage.removeItem('person-evil-health');
+      localStorage.removeItem('person-good-health');
+      localStorage.removeItem('evil-person');
+      MODAL_FIGHT.classList.remove('modal-fight--active');
+    }
+  }
 
   BTN_ATTACK.addEventListener('click', () => {
     const ZONE_ATTACK_GOOD_PERSON = getAttackGoodPersonZone();
@@ -450,5 +495,16 @@ export const createPageFight = (pageStartBtnFight) => {
     const ZONE_DEFENSE_GOOD_PEROSN = getDefenseGoodPersonZone();
     const ZONE_ATTACK_EVIL_PERSON = getAttackZoneEvilPerosn();
     setDefenseGoodPerson(ZONE_DEFENSE_GOOD_PEROSN, ZONE_ATTACK_EVIL_PERSON);
+    setStatusFight();
+    checkedEndFight();
+  })
+
+  BTN_MODAL.addEventListener('click', () => {
+    const MODAL_FIGHT = document.querySelector('.modal-fight');
+    MODAL_FIGHT.classList.add('modal-fight--active');
+    FIGHT_PAGE.classList.add('fight-page--active');
+    FIGHT_PAGE.innerHTML = '';
+    START_PAGE.classList.remove('start-page--active');
+    FOOTER.classList.remove('footer--active');
   })
 }

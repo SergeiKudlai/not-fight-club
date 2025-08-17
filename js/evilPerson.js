@@ -4,7 +4,6 @@ export const EVIL_PERSON = [
     name: 'Orc Mace',
     image: '../assetes/images-person/evil-person/evil-person_1.png',
     health: 270,
-    defense: 40,
     attacket: 35,
     critical_damage: 15,
     special: {
@@ -17,7 +16,6 @@ export const EVIL_PERSON = [
     name: 'Troll',
     image: '../assetes/images-person/evil-person/evil-person_2.png',
     health: 250,
-    defense: 50,
     attacket: 20,
     critical_damage: 10,
     special: {
@@ -30,7 +28,6 @@ export const EVIL_PERSON = [
     name: 'Axe',
     image: '../assetes/images-person/evil-person/evil-person_3.png',
     health: 290,
-    defense: 30,
     attacket: 40,
     critical_damage: 30,
     special: {
@@ -43,7 +40,6 @@ export const EVIL_PERSON = [
     name: 'White Orc',
     image: '../assetes/images-person/evil-person/evil-person_4.png',
     health: 330,
-    defense: 0,
     attacket: 15,
     critical_damage: 10,
     special: {
@@ -56,7 +52,6 @@ export const EVIL_PERSON = [
     name: 'Viking',
     image: '../assetes/images-person/evil-person/evil-person_5.png',
     health: 310,
-    defense: 20,
     attacket: 40,
     critical_damage: 15,
     special: {
@@ -69,7 +64,6 @@ export const EVIL_PERSON = [
     name: 'Samurai',
     image: '../assetes/images-person/evil-person/evil-person_6.png',
     health: 200,
-    defense: 25,
     attacket: 30,
     critical_damage: 20,
     special: {
@@ -82,7 +76,6 @@ export const EVIL_PERSON = [
     name: 'Legion Comander',
     image: '../assetes/images-person/evil-person/evil-person_7.png',
     health: 320,
-    defense: 35,
     attacket: 30,
     critical_damage: 25,
     special: {

@@ -16,6 +16,10 @@
   padding-bottom: 2rem;
 }
 
+.player-page__container--active {
+  display: none;
+}
+
 .player-page__name {
   margin-bottom: 1.5rem;
   text-align: center;
@@ -70,10 +74,6 @@
 .player-page__characteristics-item--health::before {
   background-image: url("../assetes/icon/icon-health.png");
   background-size: contain;
-}
-
-.player-page__characteristics-item--defense::before {
-  background-image: url("../assetes/icon/icon-guard.png");
 }
 
 .player-page__characteristics-item--attacket::before {
@@ -173,4 +173,26 @@
   to {
     right: 100%;
   }
+}
+
+.player-page__modal {
+  flex: 1 1 100%;
+}
+
+.modal-player {
+  background: url("../assetes/images/fight-club_active-battle.jpg")no-repeat center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-player--active {
+  display: none;
+}
+
+.modal-player__text {
+  font-family: 'sunday';
+  color: var(--color_gold-1);
+  font-size: 3rem;
+  text-align: center;
 }

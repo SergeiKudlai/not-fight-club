@@ -1,6 +1,7 @@
 .fight-page {
   flex: 1 1 100%;
   display: flex;
+  position: relative;
 }
 
 .fight-page--active {
@@ -144,4 +145,72 @@
   row-gap: 1.5rem;
   padding: 2rem;
   overflow-y: auto;
+}
+
+.fight-page__bottom-good_person,
+.fight-page__bottom-evil_person,
+.fight-page__bottom-zone {
+  text-transform: uppercase;
+}
+
+.fight-page__bottom-good_person {
+  color: var(--green);
+}
+
+.fight-page__bottom-evil_person {
+  color: var(--red);
+}
+
+.fight-page__bottom-zone {
+  color: var(--blue);
+}
+
+.fight-page__bottom-block__attack {
+  position: relative;
+  padding-left: 3.5rem;
+}
+
+.fight-page__bottom-block__attack::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 3.5rem;
+  height: 100%;
+  background: url("../assetes/icon/icon-guard.png")no-repeat center/cover;
+}
+
+.modal-fight {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-fight--active {
+  display: none;
+}
+
+.modal-fight__inner {
+  border: 1px solid var(--color_gold-1);
+  width: 25%;
+  height: 25%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--white);
+}
+
+.modal-fight__text {
+  font-family: 'sunday';
+  font-size: 3.5rem;
+  align-self: center;
 }

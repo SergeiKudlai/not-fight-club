@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'sunday';
+  src:
+    url('../font/Sunday-Regular.woff') format('woff');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'helvetica';
+  src:
+    url('../font/helvetica_regular.woff') format('woff');
+  font-style: normal;
+}
