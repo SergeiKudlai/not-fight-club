@@ -165,19 +165,34 @@
   color: var(--blue);
 }
 
-.fight-page__bottom-block__attack {
+.fight-page__bottom-block__attack,
+.fight-page__bottom-attack,
+.fight-page__bottom-attack__critical {
   position: relative;
   padding-left: 3.5rem;
 }
 
-.fight-page__bottom-block__attack::after {
+.fight-page__bottom-block__attack::before,
+.fight-page__bottom-attack::before,
+.fight-page__bottom-attack__critical::before {
   content: "";
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 3.5rem;
   height: 100%;
+}
+
+.fight-page__bottom-block__attack::before {
   background: url("../assetes/icon/icon-guard.png")no-repeat center/cover;
+}
+
+.fight-page__bottom-attack::before {
+  background: url("../assetes/icon/icon-sword.png")no-repeat center/contain;
+}
+
+.fight-page__bottom-attack__critical::before {
+  background: url("../assetes/icon/icon-critival_attack.png")no-repeat center/cover;
 }
 
 .modal-fight {
