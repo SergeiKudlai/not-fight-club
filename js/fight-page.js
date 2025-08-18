@@ -479,11 +479,11 @@ export const createPageFight = (pageStartBtnFight) => {
   const renderNotPersonGoodZoneBlock = (attackZoneEvilPerson, defenseZoneGoodPerson) => {
     const { name: name_good_person } = GOOD_PERSON_LOCAL_ST;
     const { name: name_evil_person, attacket, critical_damage } = EVIL_PERSON_LOCAL_ST;
-    const { text, damage } = setCriticalDamagePersons(critical_damage, attacket, attackZoneEvilPerson.length);
+    const { text, damage, change } = setCriticalDamagePersons(critical_damage, attacket, attackZoneEvilPerson.length);
 
     const HTML = `
       <p class="fight-page__bottom-text">
-      <span class="fight-page__bottom-evil_person">${name_evil_person}</span> атоковал зону : <span class="fight-page__bottom-zone">${attackZoneEvilPerson.join(' ')}</span> - <span class="fight-page__bottom-good_person">${name_good_person}</span> заблокировал зоны : <span class="fight-page__bottom-zone">${defenseZoneGoodPerson.join(' ')}</span> -> ${text}
+      <span class="fight-page__bottom-evil_person">${name_evil_person}</span> атоковал зону : <span class="fight-page__bottom-zone">${attackZoneEvilPerson.join(' ')}</span> - <span class="fight-page__bottom-good_person">${name_good_person}</span> заблокировал зоны : <span class="fight-page__bottom-zone">${defenseZoneGoodPerson.join(' ')}</span> -> ${text} ${change ? `${attackZoneEvilPerson.length > 1 ? `-> пробиты ${attackZoneEvilPerson.length} зоны.` : `-> пробита ${attackZoneEvilPerson.length} зона.`}` : ''}
       </p>`
 
     LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
@@ -520,7 +520,7 @@ export const createPageFight = (pageStartBtnFight) => {
 
         const HTML = `
           <p class="fight-page__bottom-text">
-           <span class="fight-page__bottom-evil_person">${name_evil_person}</span> атоковал зону : <span class="fight-page__bottom-zone">${attackZoneEvilPerson.join(' ')}</span> - <span class="fight-page__bottom-good_person">${name_good_person}</span> заблокировал зоны : <span class="fight-page__bottom-zone">${defenseZoneGoodPerson.join(' ')}</span> нанесен урон -> ${EVIL_PERSON_DAMAGE_NO_CRITICAL}.
+           <span class="fight-page__bottom-evil_person">${name_evil_person}</span> атоковал зону : <span class="fight-page__bottom-zone">${attackZoneEvilPerson.join(' ')}</span> - <span class="fight-page__bottom-good_person">${name_good_person}</span> заблокировал зоны : <span class="fight-page__bottom-zone">${defenseZoneGoodPerson.join(' ')}</span> -> <span class="fight-page__bottom-attack">нанесен урон ${EVIL_PERSON_DAMAGE_NO_CRITICAL}.</span>
           </p>`
 
         LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
@@ -530,7 +530,7 @@ export const createPageFight = (pageStartBtnFight) => {
     } else {
       const HTML = `
         <p class="fight-page__bottom-text">
-        <span class="fight-page__bottom-evil_person">${name_evil_person}</span> атоковал зону : <span class="fight-page__bottom-zone">${attackZoneEvilPerson.join(' ')}</span> - <span class="fight-page__bottom-good_person">${name_good_person}</span> заблокировал зоны : <span class="fight-page__bottom-zone">${defenseZoneGoodPerson.join(' ')}</span> -> ${change ? text : '<span class="fight-page__bottom-block__attack">атака заблокирована</span>'} ${change ? `-> ${text} по : ${attackZoneEvilPerson.length} зонам` : '.'}
+        <span class="fight-page__bottom-evil_person">${name_evil_person}</span> атоковал зону : <span class="fight-page__bottom-zone">${attackZoneEvilPerson.join(' ')}</span> - <span class="fight-page__bottom-good_person">${name_good_person}</span> заблокировал зоны : <span class="fight-page__bottom-zone">${defenseZoneGoodPerson.join(' ')}</span> -> ${change ? text : '<span class="fight-page__bottom-block__attack">атака заблокирована</span>'} ${change ? `-> пробита : ${attackZoneEvilPerson.length} зона.` : '.'}
         </p>`
 
       LOGO_FIGHT_BOX.insertAdjacentHTML('beforeend', HTML);
