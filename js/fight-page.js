@@ -47,7 +47,53 @@ export const createPageFight = (pageStartBtnFight) => {
           <h3 class="fight-box__name">${GOOD_PERSON_LOCAL_ST.name}</h3>
 
           <div class="fight-box__images-box">
+            <button class="fight-box__images-btn btn" type="button" data-good>character info</button>
+
             <img class="fight-box__images" src="${GOOD_PERSON_LOCAL_ST.image}" alt="${GOOD_PERSON_LOCAL_ST.name}" height="400">
+
+            <aside class="fight-box__images-info info-images info-images__good-person">
+              <button class="info-images__btn btn" type="button" data-good>Close</button>
+
+                <ul class="info-images__inner">
+                  <li class="info-images__item info-images__attack">
+                    <p class="info-images__item-name">Attack</p>
+
+                    <p class="info-images__item-param">${GOOD_PERSON_LOCAL_ST.attacket}</p>
+                  </li>
+
+                  <li class="info-images__item info-images__critical-attack">
+                    <p class="info-images__item-name"> Critical Attack</p>
+
+                    <p class="info-images__item-param">
+                      ${GOOD_PERSON_LOCAL_ST.critical_damage}
+                    </p>
+                  </li>
+
+                  <li class="info-images__item info-images__health">
+                    <p class="info-images__item-name">Health</p>
+
+                    <p class="info-images__item-param">
+                      ${GOOD_PERSON_LOCAL_ST.health}
+                    </p>
+                  </li>
+
+                  <li class="info-images__item info-images__attack-zone">
+                    <p class="info-images__item-name">Attack Zone</p>
+
+                    <p class="info-images__item-param">
+                      1
+                    </p
+                  </li>
+
+                  <li class="info-images__item info-images__defense-zone">
+                    <p class="info-images__item-name">Defense Zone</p>
+
+                    <p class="info-images__item-param">
+                      2
+                    </p
+                  </li>
+                </ul>
+            </aside>
           </div>
 
           <progress class="fight-box__bar-health fight-box__good-person__bar" max="${GOOD_PERSON_LOCAL_ST.health}" value="${localStorage.getItem('person-good-health')}"></progress>
@@ -140,7 +186,55 @@ export const createPageFight = (pageStartBtnFight) => {
           <h3 class="fight-box__name">${EVIL_PERSON_LOCAL_ST.name}</h3>
 
           <div class="fight-box__images-box">
+            <button class="fight-box__images-btn btn" type="button" data-evil>character info</button>
+
             <img class="fight-box__images" src="${EVIL_PERSON_LOCAL_ST.image}" alt="${EVIL_PERSON_LOCAL_ST.name}" height="400">
+             
+            <aside class="fight-box__images-info info-images info-images__evil-person">
+              <button class="info-images__btn btn" type="button" data-evil>Close</button>
+
+              <ul class="info-images__inner">
+                <li class="info-images__item info-images__attack">
+                    <p class="info-images__item-name">Attack</p>
+
+                    <p class="info-images__item-param">
+                      ${EVIL_PERSON_LOCAL_ST.attacket}
+                    </p>
+                </li>
+
+                <li class="info-images__item info-images__critical-attack">
+                    <p class="info-images__item-name">Critical Attack</p>
+
+                    <p class="info-images__item-param">
+                      ${EVIL_PERSON_LOCAL_ST.critical_damage}
+                    </p>
+                </li>
+
+                <li class="info-images__item info-images__health">
+                  <p class="info-images__item-name">Health</p>
+
+                  <p class="info-images__item-param">
+                    ${EVIL_PERSON_LOCAL_ST.health}
+                  </p
+                </li>
+
+                <li class="info-images__item info-images__attack-zone">
+                  <p class="info-images__item-name">Attack Zone</p>
+
+                  <p class="info-images__item-param">
+                    ${EVIL_PERSON_LOCAL_ST.special.attackZone}
+                  </p
+                </li>
+
+                <li class="info-images__item info-images__defense-zone">
+                  <p class="info-images__item-name">Defense Zone</p>
+
+                  <p class="info-images__item-param">
+                    ${EVIL_PERSON_LOCAL_ST.special.defenseZone}
+                  </p
+                </li>
+              </ul>
+            </aside>
           </div>
 
           <progress class="fight-box__bar-health fight-box__evil-person__bar" max="${EVIL_PERSON_LOCAL_ST.health}" value="${localStorage.getItem('person-evil-health')}"></progress>
@@ -179,8 +273,41 @@ export const createPageFight = (pageStartBtnFight) => {
   const DEFENSE_ELEMENT = document.querySelectorAll('.defense-zone__item');
   const LOGO_FIGHT_BOX = document.querySelector('.fight-page__bottom');
   const BTN_MODAL = document.querySelector('.modal-fight__btn');
+  const BTN_ASIDE_IMAGES = document.querySelectorAll('.fight-box__images-btn');
+  const BTN_HIDE_ASIDE_IMAGES = document.querySelectorAll('.info-images__btn');
   let attackControl = false;
   let defenseControl = false;
+
+
+  BTN_ASIDE_IMAGES.forEach((elemntBtnAsideImages) => {
+    elemntBtnAsideImages.addEventListener('click', function () {
+
+      if (this.hasAttribute('data-evil')) {
+        const ASIDE_EVIL_PERSON = document.querySelector('.info-images__evil-person');
+        ASIDE_EVIL_PERSON.classList.add('info-images__evil-person--active');
+      }
+
+      if (this.hasAttribute('data-good')) {
+        const ASIDE_EVIL_PERSON = document.querySelector('.info-images__good-person');
+        ASIDE_EVIL_PERSON.classList.add('info-images__good-person--active');
+      }
+    })
+  })
+
+  BTN_HIDE_ASIDE_IMAGES.forEach((elementHideAside) => {
+    elementHideAside.addEventListener('click', function () {
+      if (this.hasAttribute('data-evil')) {
+        const ASIDE_EVIL_PERSON = document.querySelector('.info-images__evil-person');
+        ASIDE_EVIL_PERSON.classList.remove('info-images__evil-person--active');
+      }
+
+      if (this.hasAttribute('data-good')) {
+        const ASIDE_EVIL_PERSON = document.querySelector('.info-images__good-person');
+        ASIDE_EVIL_PERSON.classList.remove('info-images__good-person--active');
+      }
+    })
+  })
+
 
 
   if (localStorage.getItem('logo-fight')) {

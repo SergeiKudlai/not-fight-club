@@ -35,7 +35,112 @@
 }
 
 .fight-box__images-box {
+  border: 0.1rem solid var(--color_gold-1);
+  border-radius: 2.5rem;
   justify-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.fight-box__images-btn {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.fight-box__images-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  border-radius: 2.5rem;
+  transition: left 1s ease-in-out;
+  padding: 1rem;
+}
+
+.info-images__good-person {
+  left: -100%;
+}
+
+.info-images__good-person--active {
+  left: 0;
+}
+
+.info-images__evil-person {
+  left: 100%;
+}
+
+.info-images__evil-person--active {
+  left: 0;
+}
+
+.info-images__inner {
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+  row-gap: 1.5rem;
+}
+
+.info-images__item {
+  display: flex;
+  width: 100%;
+  max-width: 25rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  position: relative;
+  color: var(--color-1);
+}
+
+.info-images__item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 2.5rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.info-images__attack::before {
+  background-image: url("../assetes/icon/icon-sword.png");
+  background-size: contain;
+}
+
+.info-images__critical-attack::before {
+  background-image: url("../assetes/icon/icon-critival_attack.png");
+}
+
+.info-images__critical-attack::after {
+  content: "%";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 2.5rem;
+}
+
+.info-images__health::before {
+  background-image: url("../assetes/icon/icon-health.png");
+  background-size: contain;
+}
+
+.info-images__attack-zone::before {
+  background-image: url("../assetes/icon/attack-zone.png");
+  background-size: contain;
+}
+
+.info-images__defense-zone::before {
+  background-image: url("../assetes/icon/icon-guard.png");
 }
 
 .fight-box__bar-health {
