@@ -58,7 +58,8 @@ export const createPageLogin = (control) => {
   const controlValidForm = () => {
     const FORM_WRAPPER = document.querySelector('.login__inner');
     FORM_WRAPPER.addEventListener('submit', (event) => event.preventDefault());
-    localStorage.setItem('name-person', FORM_INPUT.value);
+    const NAME_INPUT_VALUE = FORM_INPUT.value[0].toUpperCase() + FORM_INPUT.value.slice(1);
+    localStorage.setItem('name-person', NAME_INPUT_VALUE);
   }
 
   const setRandomPlayerLocalStorage = () => {
