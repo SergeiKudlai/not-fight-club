@@ -1,6 +1,8 @@
 export const UpdatePersonNameHeader = () => {
   const HEADER_PERSON_NAME = document.querySelector('.icon-contetn__name');
-  HEADER_PERSON_NAME.textContent = localStorage.getItem('name-person');
+  const NAME_USER = localStorage.getItem('name-person');
+  const RESULT_NAME_USER = NAME_USER[0].toUpperCase() + NAME_USER.slice(1);
+  HEADER_PERSON_NAME.textContent = RESULT_NAME_USER;
 }
 
 export const updatePageNameOnHeader = (name) => {

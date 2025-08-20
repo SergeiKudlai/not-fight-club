@@ -1,0 +1,161 @@
+.rival-page {
+  flex: 1 1 100%;
+  display: flex;
+}
+
+.rival-page--active {
+  display: none;
+}
+
+.rival-page__container {
+  flex: 1 1 100%;
+  display: flex;
+  column-gap: 2rem;
+  height: calc(100vh - 20rem);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.rival-page__container--active {
+  display: none;
+}
+
+.rival-page__right,
+.rival-page__left {
+  flex: 0 1 50%;
+  border: 0.1rem solid var(--color_gold-1);
+}
+
+.rival-right {
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.rival-right__inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  gap: 2rem;
+  justify-content: center;
+}
+
+.rival-right__element {
+  height: 30rem;
+}
+
+.rival-right__item {
+  position: relative;
+  height: 100%;
+}
+
+.rival-right__images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+  border: 0.1rem solid transparent;
+  transition: border 0.5s ease-in-out;
+  border-radius: 2.5rem;
+}
+
+.rival-right__images:hover {
+  border-color: var(--color_gold-1);
+}
+
+.rival-left {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.rival-left__top {
+  padding-bottom: 2rem;
+  border-bottom: 0.1rem solid var(--color_gold-1);
+}
+
+.rival-left__top,
+.rival-left__bottom {
+  flex: 0 1 50%;
+}
+
+.rival-left__top-inner,
+.rival-left__bottom-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  align-items: center;
+}
+
+.rival-left__top-name {
+  align-self: center;
+  font-family: '';
+}
+
+.rival-left__top-image {
+  max-height: 30rem;
+  object-fit: contain;
+}
+
+.rival-left__bottom {
+  padding: 2rem 0;
+}
+
+.rival-left__bottom-item {
+  display: flex;
+  column-gap: 1rem;
+  max-width: 30rem;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+  position: relative;
+}
+
+.rival-left__bottom-item::before,
+.rival-left__bottom-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 3rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.rival-left__bottom-item--attacket::before {
+  background-image: url("../assetes/icon/icon-sword.png");
+  background-size: contain;
+}
+
+.rival-left__bottom-item--critical-attack::before {
+  background-image: url("../assetes//icon/icon-critival_attack.png");
+}
+
+.rival-left__bottom-item--critical-attack::after {
+  content: "%";
+  right: 0;
+  left: auto;
+}
+
+.rival-left__bottom-item--health::before {
+  background-image: url("../assetes/icon/icon-health.png");
+  background-size: contain;
+}
+
+.rival-left__bottom-item--attacket-zone::before {
+  background-image: url("../assetes/icon/icon-guard.png");
+}
+
+.rival-left__bottom-item--defense-zone::before {
+  background-image: url("../assetes/icon/attack-zone.png");
+  background-size: contain;
+}
+
+.rival-page__modal {
+  flex: 1 1 100%;
+}
