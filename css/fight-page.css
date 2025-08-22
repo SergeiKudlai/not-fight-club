@@ -227,6 +227,24 @@
   right: 0;
 }
 
+.battle-box__item {
+  appearance: none;
+  width: 3rem;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.attack-zone__item:checked {
+  background-image: url("../assetes/icon/icon-sword.png");
+  background-size: contain;
+}
+
+.defense-zone__item:checked {
+  background-image: url("../assetes/icon/icon-guard.png");
+}
+
 .battle-box__inner,
 .battle-box__item {
   cursor: pointer;
@@ -281,10 +299,10 @@
 .fight-page__bottom-attack__critical::before {
   content: "";
   position: absolute;
-  top: 0;
+  top: calc(50% - 1.5rem);
   left: 0;
-  width: 3.5rem;
-  height: 100%;
+  width: 3rem;
+  height: 3rem;
 }
 
 .fight-page__bottom-block__attack::before {
