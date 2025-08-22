@@ -2,7 +2,7 @@ export const GOOD_PERSON = [
   {
     id: 1,
     name: 'Van Helsing',
-    image: '../assetes/images-person/good-person/good-person_1.png',
+    image: './assetes/images-person/good-person/good-person_1.png',
     health: 220,
     attacket: 25,
     critical_damage: 10,
@@ -10,7 +10,7 @@ export const GOOD_PERSON = [
   {
     id: 2,
     name: 'Leonid',
-    image: '../assetes/images-person/good-person/good-person_2.png',
+    image: './assetes/images-person/good-person/good-person_2.png',
     health: 250,
     attacket: 15,
     critical_damage: 15,
@@ -18,7 +18,7 @@ export const GOOD_PERSON = [
   {
     id: 3,
     name: 'Assassin',
-    image: '../assetes/images-person/good-person/good-person_3.jpg',
+    image: './assetes/images-person/good-person/good-person_3.jpg',
     health: 230,
     attacket: 40,
     critical_damage: 30,
@@ -26,7 +26,7 @@ export const GOOD_PERSON = [
   {
     id: 4,
     name: 'Witcher',
-    image: '../assetes/images-person/good-person/good-person_4.png',
+    image: './assetes/images-person/good-person/good-person_4.png',
     health: 240,
     attacket: 30,
     critical_damage: 15,
@@ -34,7 +34,7 @@ export const GOOD_PERSON = [
   {
     id: 5,
     name: 'Ninja',
-    image: '../assetes/images-person/good-person/good-person_5.png',
+    image: './assetes/images-person/good-person/good-person_5.png',
     health: 200,
     attacket: 25,
     critical_damage: 35,
@@ -42,7 +42,7 @@ export const GOOD_PERSON = [
   {
     id: 6,
     name: 'Shadow ninja',
-    image: '../assetes/images-person/good-person/good-person_6.png',
+    image: './assetes/images-person/good-person/good-person_6.png',
     health: 220,
     attacket: 35,
     critical_damage: 35,
@@ -50,7 +50,7 @@ export const GOOD_PERSON = [
   {
     id: 7,
     name: 'Valkyrie',
-    image: '../assetes/images-person/good-person/good-person_7.png',
+    image: './assetes/images-person/good-person/good-person_7.png',
     health: 240,
     attacket: 30,
     critical_damage: 15,
@@ -58,7 +58,7 @@ export const GOOD_PERSON = [
   {
     id: 8,
     name: 'Archer',
-    image: '../assetes/images-person/good-person/good-person_8.png',
+    image: './assetes/images-person/good-person/good-person_8.png',
     health: 190,
     attacket: 45,
     critical_damage: 40,
