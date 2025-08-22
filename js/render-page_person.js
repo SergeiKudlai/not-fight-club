@@ -69,22 +69,22 @@ export const createPagePlayer = () => {
 
         <ul class="slider-player__box-right characteristics-player">
           <li class="characteristics-player__items">
-            NAME:
+            <p class="characteristics-player__items-value">NAME:</p>
             <span class="characteristics-player__items-name">${GOOD_PERSON[0].name}</span>
           </li>
 
           <li class="characteristics-player__items">
-            ATTACKET:
+            <p class="characteristics-player__items-value">ATTACKET:</p>
             <span class="characteristics-player__items-attacket">${GOOD_PERSON[0].attacket}</span>
           </li>
 
           <li class="characteristics-player__items">
-            HEALTH:
+            <p class="characteristics-player__items-value">HEALTH:</p>
             <span class="characteristics-player__items-health">${GOOD_PERSON[0].health}</span>
           </li>
 
           <li class="characteristics-player__items">
-            CRITICAL DAMAGE:
+            <p class="characteristics-player__items-value">CRITICAL DAMAGE:</p>
             <span class="characteristics-player__items-critical_damage">${GOOD_PERSON[0].critical_damage}</span>
           </li>
         </ul>
@@ -204,23 +204,23 @@ export const createPagePlayer = () => {
 
     const { name, attacket, health, critical_damage } = ACTIVE_PLAYER;
     const HTML = `
-              <li class="characteristics-player__items">
-            NAME:
+          <li class="characteristics-player__items">
+            <p class="characteristics-player__items-value">NAME:</p>
             <span class="characteristics-player__items-name">${name}</span>
           </li>
 
           <li class="characteristics-player__items">
-            ATTACKET:
+            <p class="characteristics-player__items-value">ATTACKET:</p>
             <span class="characteristics-player__items-attacket">${attacket}</span>
           </li>
 
           <li class="characteristics-player__items">
-            HEALTH:
+            <p class="characteristics-player__items-value">HEALTH:</p>
             <span class="characteristics-player__items-health">${health}</span>
           </li>
 
           <li class="characteristics-player__items">
-            CRITICAL DAMAGE:
+            <p class="characteristics-player__items-value">CRITICAL DAMAGE:</p>
             <span class="characteristics-player__items-critical_damage">${critical_damage}</span>
           </li>
     `

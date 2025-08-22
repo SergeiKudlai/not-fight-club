@@ -57,9 +57,11 @@
 .player-page__characteristics-item {
   position: relative;
   padding-left: 3rem;
+  padding-right: 3rem;
 }
 
-.player-page__characteristics-item::before {
+.player-page__characteristics-item::before,
+.player-page__characteristics-item::after {
   content: "";
   position: absolute;
   top: 0;
@@ -83,6 +85,12 @@
 
 .player-page__characteristics-item--critical-damage::before {
   background-image: url("../assetes/icon/icon-critival_attack.png");
+}
+
+.player-page__characteristics-item--critical-damage::after {
+ content: "%";
+ right: 0;
+ left: auto;
 }
 
 .slider-player {
@@ -153,6 +161,49 @@
   flex-direction: column;
   row-gap: 1.5rem;
   align-items: center;
+}
+
+.characteristics-player__items {
+  display: flex;
+  column-gap: 2rem;
+  max-width: 35rem;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  position: relative;
+}
+
+.characteristics-player__items::before,
+.characteristics-player__items:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3rem;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.characteristics-player__items:nth-child(2)::before {
+  background-image: url("../assetes/icon/icon-sword.png");
+}
+
+.characteristics-player__items:nth-child(3)::before {
+  background-image: url("../assetes/icon/icon-health.png");
+}
+
+.characteristics-player__items:nth-child(4)::before {
+  background-image: url("../assetes/icon/icon-critival_attack.png");
+}
+
+.characteristics-player__items:nth-child(4)::after {
+  content: "%";
+  left: auto;
+  right: 0;
 }
 
 @keyframes slider-left {
